@@ -1,9 +1,9 @@
 package com.arep.proyecto.parqueaderos.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
-import java.util.Optional;
 
 @Entity
 @Table(name = "Cars")
@@ -20,8 +20,11 @@ public class Car {
     private LocalDateTime leaveTime;
     @Column(name = "priceC")
     private int priceC;
-//    @JoinColumn(name = "idP", referencedColumnName = "idP")
-    @ManyToOne(optional = false)
+    @ManyToOne
+    @JoinColumn(name = "idP")
+//    @JsonProperty("idP")
+//    @JsonIgnore
+    @JsonBackReference
     private Parking parking;
 
     public Car(String idC, String license, LocalDateTime arriveTime, LocalDateTime leaveTime, int priceC, Parking parking) {
