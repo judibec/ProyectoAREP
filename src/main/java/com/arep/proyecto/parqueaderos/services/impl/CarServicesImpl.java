@@ -23,9 +23,8 @@ public class CarServicesImpl implements CarServices {
 
     @Override
     public Optional<Car> newCarInParking(Car car){
-        System.out.println("Llego aqui");
         carRepository.save(car);
         System.out.println("paso");
-        return carRepository.findById(Integer.valueOf(car.getIdC()));
+        return carRepository.findById(car.getIdC());
     }
 }

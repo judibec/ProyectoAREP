@@ -1,7 +1,9 @@
 package com.arep.proyecto.parqueaderos.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import jakarta.persistence.*;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 
@@ -21,13 +23,19 @@ public class Car {
     private LocalDateTime leaveTime;
     @Column(name = "priceC")
     private int priceC;
+
+//    private String idP;
     @ManyToOne
     @JoinColumn(name = "idP")
 //    @JsonIgnore
     @JsonBackReference
+    @JsonIdentityReference(alwaysAsId = true)
     private Parking parking;
 
+
+
     public Car(String idC, String license, LocalDateTime arriveTime, LocalDateTime leaveTime, int priceC, Parking parking) {
+        System.out.println("paila");
         this.idC = idC;
         this.license = license;
         this.arriveTime = arriveTime;
@@ -36,12 +44,13 @@ public class Car {
         this.parking = parking;
     }
 
-    public Car(CarDto carDto){
-        this.license = carDto.getLicense();
-        this.arriveTime = carDto.getArriveTime();
-        this.leaveTime = carDto.getLeaveTime();
-        this.priceC = carDto.getPriceC();
-
+    public Car(String license, LocalDateTime arriveTime, LocalDateTime leaveTime, int priceC, String idP) {
+        System.out.println("LLego al que era :)");
+        this.license = license;
+        this.arriveTime = arriveTime;
+        this.leaveTime = leaveTime;
+        this.priceC = priceC;
+//        this.idP = idP;
     }
 
     public Car() {
