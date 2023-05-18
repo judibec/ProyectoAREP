@@ -1,8 +1,8 @@
 package com.arep.proyecto.parqueaderos.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -24,8 +24,9 @@ public class Parking {
     private String schedule;
     @Column(name = "total_spaces")
     private int totalSpaces;
-    @OneToMany(mappedBy = "idC")
-//    @JoinColumn(name = "idC")
+
+    @OneToMany(mappedBy = "parking")
+    @JsonManagedReference
     private List<Car> cars;
 
     public Parking(String idP, String name, String ubication, int spaces, int priceP, String schedule, int totalSpaces, List<Car> cars) {
