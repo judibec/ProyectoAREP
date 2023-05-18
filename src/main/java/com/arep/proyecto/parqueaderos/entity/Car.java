@@ -22,7 +22,7 @@ public class Car {
     @Column(name = "leave_time")
     private LocalDateTime leaveTime;
     @Column(name = "priceC")
-    private int priceC;
+    private Integer priceC;
 
 //    private String idP;
     @ManyToOne
@@ -35,7 +35,6 @@ public class Car {
 
 
     public Car(String idC, String license, LocalDateTime arriveTime, LocalDateTime leaveTime, int priceC, Parking parking) {
-        System.out.println("paila");
         this.idC = idC;
         this.license = license;
         this.arriveTime = arriveTime;

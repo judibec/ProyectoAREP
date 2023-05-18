@@ -106,4 +106,9 @@ public class Parking {
     public void setCars(List<Car> cars) {
         this.cars = cars;
     }
+
+    public void update(Parking parking){
+        this.priceP = parking.getpriceP();
+        this.schedule = parking.getSchedule();
+    }
 }
