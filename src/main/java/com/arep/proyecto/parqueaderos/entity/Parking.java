@@ -25,7 +25,7 @@ public class Parking {
     @Column(name = "total_spaces")
     private int totalSpaces;
     @OneToMany(mappedBy = "idC")
-    @JoinColumn(name = "idC")
+//    @JoinColumn(name = "idC")
     private List<Car> cars;
 
     public Parking(String idP, String name, String ubication, int spaces, int priceP, String schedule, int totalSpaces, List<Car> cars) {

@@ -10,6 +10,7 @@ import java.util.Optional;
 public class Car {
 
     @Id
+    @GeneratedValue
     @Column(name = "idC")
     private String idC;
     @Column(name = "license")
@@ -20,17 +21,25 @@ public class Car {
     private LocalDateTime leaveTime;
     @Column(name = "priceC")
     private int priceC;
-//    @JoinColumn(name = "idP", referencedColumnName = "idP")
-    @ManyToOne(optional = false)
-    private Parking parking;
+    @JoinColumn(name = "idP", referencedColumnName = "idP")
+    @ManyToOne(optional = true)
+    private String parking;
 
-    public Car(String idC, String license, LocalDateTime arriveTime, LocalDateTime leaveTime, int priceC, Parking parking) {
+    public Car(String idC, String license, LocalDateTime arriveTime, LocalDateTime leaveTime, int priceC, String parking) {
         this.idC = idC;
         this.license = license;
         this.arriveTime = arriveTime;
         this.leaveTime = leaveTime;
         this.priceC = priceC;
         this.parking = parking;
+    }
+
+    public Car(CarDto carDto){
+        this.license = carDto.getLicense();
+        this.arriveTime = carDto.getArriveTime();
+        this.leaveTime = carDto.getLeaveTime();
+        this.priceC = carDto.getPriceC();
+
     }
 
     public Car() {
@@ -76,11 +85,11 @@ public class Car {
         this.priceC = priceC;
     }
 
-    public Parking getParking() {
+    public String getParking() {
         return parking;
     }
 
-    public void setParking(Parking parking) {
+    public void setParking(String parking) {
         this.parking = parking;
     }
 
