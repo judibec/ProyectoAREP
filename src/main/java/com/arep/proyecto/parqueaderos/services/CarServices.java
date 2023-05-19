@@ -10,5 +10,5 @@ public interface CarServices {
 
     Optional<Car> newCarInParking(Car car);
 
-    void updateCar(String id, int price);
+    void updateCar(Long id, int price);
 }

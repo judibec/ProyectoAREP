@@ -2,7 +2,9 @@ package com.arep.proyecto.parqueaderos.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
+import org.hibernate.annotations.GenericGenerator;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -14,7 +16,7 @@ public class Car {
     @Id
     @GeneratedValue
     @Column(name = "idC")
-    private String idC;
+    private Long idC;
     @Column(name = "license")
     private String license;
     @Column(name = "arrive_time")
@@ -22,19 +24,19 @@ public class Car {
     @Column(name = "leave_time")
     private LocalDateTime leaveTime;
     @Column(name = "priceC")
-    private Integer priceC;
-
-//    private String idP;
+    @Nullable
+    private Integer priceC = 0;
+//    @Column(name = "parking")
+//    private String parking;
     @ManyToOne
     @JoinColumn(name = "idP")
-//    @JsonIgnore
     @JsonBackReference
     @JsonIdentityReference(alwaysAsId = true)
     private Parking parking;
 
 
 
-    public Car(String idC, String license, LocalDateTime arriveTime, LocalDateTime leaveTime, int priceC, Parking parking) {
+    public Car(Long idC, String license, LocalDateTime arriveTime, LocalDateTime leaveTime, int priceC, Parking parking) {
         this.idC = idC;
         this.license = license;
         this.arriveTime = arriveTime;
@@ -43,23 +45,23 @@ public class Car {
         this.parking = parking;
     }
 
-    public Car(String license, LocalDateTime arriveTime, LocalDateTime leaveTime, int priceC, String idP) {
+    public Car(String license, LocalDateTime arriveTime, LocalDateTime leaveTime, int priceC, String parking) {
         System.out.println("LLego al que era :)");
         this.license = license;
         this.arriveTime = arriveTime;
         this.leaveTime = leaveTime;
         this.priceC = priceC;
-//        this.idP = idP;
+//        this.parking = parking;
     }
 
     public Car() {
     }
 
-    public String getIdC() {
+    public Long getIdC() {
         return idC;
     }
 
-    public void setIdC(String idC) {
+    public void setIdC(Long idC) {
         this.idC = idC;
     }
 

@@ -26,13 +26,13 @@ public class CarServicesImpl implements CarServices {
     public Optional<Car> newCarInParking(Car car){
         carRepository.save(car);
         System.out.println("paso");
-        return carRepository.findById(car.getIdC());
+        return carRepository.findById(String.valueOf(car.getIdC()));
     }
 
     @Override
-    public void updateCar(String id, int price) {
-        if(carRepository.existsById(id)){
-            Optional<Car> car = carRepository.findById(id);
+    public void updateCar(Long id, int price) {
+        if(carRepository.existsById(String.valueOf(id))){
+            Optional<Car> car = carRepository.findById(String.valueOf(id));
             car.get().setLeaveTime(LocalDateTime.now());
             Duration duration = Duration.between(car.get().getLeaveTime(),car.get().getArriveTime());
             car.get().setpriceC((int) (duration.toMinutes()*(-price)));
